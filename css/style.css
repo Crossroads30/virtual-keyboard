@@ -35,12 +35,12 @@ html {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-   width: 704px;
+   width: 700px;
    margin: 0 auto;
    padding: 5px;
    padding-left: 0;
    padding-bottom: 0;
-   background: #888888;
+   background: silver;
    border: 3px solid #222222;
    border-radius: 5px;
 }
@@ -50,11 +50,12 @@ html {
    justify-content: center;
    align-items: center;
    flex-shrink: 0;
-   width: 40px;
+   min-width: 40px;
    height: 40px;
    margin: 2px;
    border: 1px solid black;
-   color: #fff;
+   color: #222222;
+   background: #fff;
    /* float: left; */
 }
 
@@ -72,3 +73,44 @@ html {
 .active {
    background: #222222;
 }
+
+.keyboard-key[data-key='backspace'] {
+   width: 86px;
+}
+
+.keyboard-key[data-key='tab'] {
+   width: 86px;
+}
+
+.keyboard-key[data-key='enter'] {
+   width: 86px;
+}
+
+.keyboard-key[data-key='caps lock'] {
+   width: 86px;
+}
+
+.keyboard-key[data-key='shift'] {
+   width: 109px;
+}
+
+.keyboard-key[data-key='control'] {
+   width: 40px;
+}
+
+.keyboard-key[data-key='option'] {
+   width: 40px;
+}
+
+.keyboard-key[data-key='command'] {
+   width: 40px;
+}
+
+.keyboard-key[data-key='space'] {
+   width: 270px;
+}
+
+.keyboard-key[data-key='|'] {
+   margin-right: 3px;
+}
+
