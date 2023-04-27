@@ -58,6 +58,10 @@ html {
    /* float: left; */
 }
 
+.keyboard-key:active {
+   background: #222222;
+}
+
 .description,
 .language,
 .title {
