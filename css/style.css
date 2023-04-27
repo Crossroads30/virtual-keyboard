@@ -14,6 +14,7 @@ html {
 }
 
 .title {
+   display: block;
    font-size: 30px;
    color: rgba(107, 246, 7, 0.909);
 }
@@ -35,9 +36,7 @@ html {
    justify-content: center;
    width: 700px;
    margin: 0 auto;
-   padding: 5px;
-   padding-left: 0;
-   padding-bottom: 0;
+   padding: 5px 0;
    background: silver;
    border: 3px solid #222222;
    border-radius: 5px;
@@ -95,9 +94,17 @@ html {
 }
 
 .keyboard-key[data-key='shift'] {
-   width: 86px;
+   width: 132px;
 }
 
+/* .keyboard-key[data-key='shift'] {
+   width: 86px;
+} */
+
 .keyboard-key[data-key='space'] {
-   width: 316px;
+   width: 408px;
 }
+
+/* .keyboard-key[data-key='up'] {
+   margin-right: 0px;
+} */
