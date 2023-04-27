@@ -15,9 +15,7 @@ html {
 
 .title {
    font-size: 30px;
-   color: rgba(101, 134, 177, 0.8);
-   -webkit-text-stroke: 1px rgba(114, 177, 101, 0.8);
-   -webkit-text-fill-color: rgba(101, 134, 177, 0.8);
+   color: rgba(107, 246, 7, 0.909);
 }
 
 .textarea {
@@ -56,11 +54,16 @@ html {
    border: 1px solid black;
    color: #222222;
    background: #fff;
-   /* float: left; */
+   transition: all .2s;
+}
+
+.keyboard-key:hover {
+   background: #93f29d;
 }
 
 .keyboard-key:active {
-   background: #222222;
+   background: rgba(107, 246, 7, 0.909);
+   border-radius: 50px;
 }
 
 .description,
@@ -71,7 +74,8 @@ html {
 }
 
 .active {
-   background: #222222;
+   background: rgba(107, 246, 7, 0.909);
+   border-radius: 50px;
 }
 
 .keyboard-key[data-key='backspace'] {
@@ -91,26 +95,9 @@ html {
 }
 
 .keyboard-key[data-key='shift'] {
-   width: 109px;
-}
-
-.keyboard-key[data-key='control'] {
-   width: 40px;
-}
-
-.keyboard-key[data-key='option'] {
-   width: 40px;
-}
-
-.keyboard-key[data-key='command'] {
-   width: 40px;
+   width: 86px;
 }
 
 .keyboard-key[data-key='space'] {
-   width: 270px;
+   width: 316px;
 }
-
-.keyboard-key[data-key='|'] {
-   margin-right: 3px;
-}
-
