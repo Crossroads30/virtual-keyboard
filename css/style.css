@@ -81,57 +81,57 @@ html {
 .keyboard-key[data-key='Backspace'],
 .keyboard-key-ru[data-key-rus='Backspace'] {
    width: 100px;
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Tab'],
 .keyboard-key-ru[data-key-rus='Tab'] {
    width: 56px;
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Enter'],
 .keyboard-key-ru[data-key-rus='Enter'] {
    width: 100px;
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Caps Lock'],
 .keyboard-key-ru[data-key-rus='Caps Lock'] {
    width: 84px;
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Shift'],
 .keyboard-key-ru[data-key-rus='Shift'] {
    width: 144px;
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Space'],
 .keyboard-key-ru[data-key-rus='Space'] {
    width: 408px;
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Del'],
 .keyboard-key-ru[data-key-rus='Del'] {
-   font-size: 14px;
+   font-size: 12px;
 }
 
-.keyboard-key[data-key='Cont'],
-.keyboard-key-ru[data-key-rus='Cont'] {
-   font-size: 14px;
+.keyboard-key[data-key='Contr'],
+.keyboard-key-ru[data-key-rus='Contr'] {
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Opt'],
 .keyboard-key-ru[data-key-rus='Opt'] {
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .keyboard-key[data-key='Cmd'],
 .keyboard-key-ru[data-key-rus='Cmd'] {
-   font-size: 14px;
+   font-size: 12px;
 }
 
 .active {

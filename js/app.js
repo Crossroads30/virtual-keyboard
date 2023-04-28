@@ -40,7 +40,7 @@ keyboard.classList.add('eng');
 
 //creating rus symbols
 
-let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'з', 'х', 'ё', 'Del', 'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", "Enter", 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'up', '', 'Cont', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
+let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'з', 'х', 'ё', 'Del', 'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", "Enter", 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'up', '', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
 
 function createKeyButtonsRus() {
    let rusButtons = '';
@@ -52,7 +52,7 @@ function createKeyButtonsRus() {
 createKeyButtonsRus();
 
 //create keyboard itself
-let keySymbolsEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', 'Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", "Enter", 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'up', '', 'Cont', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
+let keySymbolsEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', 'Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", "Enter", 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'up', '', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
 
 
 
@@ -75,7 +75,7 @@ const backSpace = document.querySelector('.keyboard-key[data-key="Backspace"]');
 const tab = document.querySelector('.keyboard-key[data-key="Tab"]');
 const del = document.querySelector('.keyboard-key[data-key="Del"]');
 const enter = document.querySelector('.keyboard-key[data-key="Enter"]');
-const control = document.querySelector('.keyboard-key[data-key="Ctrl"]');
+const control = document.querySelector('.keyboard-key[data-key="Contr"]');
 const option = document.querySelector('.keyboard-key[data-key="Opt"]');
 const command = document.querySelector('.keyboard-key[data-key="Cmd"]');
 const left = document.querySelector('.keyboard-key[data-key="left"]');
@@ -92,7 +92,7 @@ const backSpaceRu = document.querySelector('.keyboard-key-ru[data-key-rus="Backs
 const tabRu = document.querySelector('.keyboard-key-ru[data-key-rus="Tab"]');
 const delRu = document.querySelector('.keyboard-key-ru[data-key-rus="Del"]');
 const enterRu = document.querySelector('.keyboard-key-ru[data-key-rus="Enter"]');
-const controlRu = document.querySelector('.keyboard-key-ru[data-key-rus="Ctrl"]');
+const controlRu = document.querySelector('.keyboard-key-ru[data-key-rus="Contr"]');
 const optionRu = document.querySelector('.keyboard-key-ru[data-key-rus="Opt"]');
 const commandRu = document.querySelector('.keyboard-key-ru[data-key-rus="Cmd"]');
 const leftRus = document.querySelector('.keyboard-key-ru[data-key-rus="left"]');
