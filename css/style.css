@@ -32,6 +32,11 @@ html {
    font-size: 18px;
    color: #444444;
    overflow: auto;
+   caret-color: transparent;
+}
+
+.textarea:focus {
+   outline: none;
 }
 
 .keyboard,
@@ -131,6 +136,11 @@ html {
 
 .keyboard-key[data-key='Cmd'],
 .keyboard-key-ru[data-key-rus='Cmd'] {
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Clear'],
+.keyboard-key-ru[data-key-rus='Clear'] {
    font-size: 12px;
 }
 

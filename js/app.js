@@ -12,6 +12,7 @@ let text = document.createElement('textarea');
 conteiner.append(text);
 text.className = 'textarea';
 text.id = 'textarea';
+text.setAttribute('autofocus', '')
 
 let keyboard = document.createElement('div');
 conteiner.append(keyboard);
@@ -40,7 +41,7 @@ keyboard.classList.add('eng');
 
 //creating rus symbols
 
-let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'з', 'х', 'ё', 'Del', 'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", "Enter", 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'up', '', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
+let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'з', 'х', 'ё', 'Del', 'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", "Enter", 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'up', 'Clear', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
 
 function createKeyButtonsRus() {
    let rusButtons = '';
@@ -52,14 +53,14 @@ function createKeyButtonsRus() {
 createKeyButtonsRus();
 
 //create keyboard itself
-let keySymbolsEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', 'Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", "Enter", 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'up', '', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
+let keySymbolsEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', 'Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", "Enter", 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'up', 'Clear', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
 
 
 
 function createKeyButtonsEng() {
    let engButton = '';
    for (let i = 0; i < keySymbolsEng.length; i++) {
-      engButton += '<div class="keyboard-key" data-key="' + keySymbolsEng[i] + '" >' + keySymbolsEng[i] + '</div>';
+      engButton += '<div class="keyboard-key in-lower-case" data-key="' + keySymbolsEng[i] + '" >' + keySymbolsEng[i] + '</div>';
    };
    keyboard.innerHTML = engButton;
 };
@@ -114,6 +115,7 @@ leftRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transfo
 rightRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(90deg)">';
 
 
+
 //identifying of key codes
 document.querySelector('.textarea').addEventListener('keydown', e => {
    console.log(e)
@@ -123,7 +125,7 @@ document.querySelector('.textarea').addEventListener('keydown', e => {
 window.addEventListener('keydown', function (e) {
    for (let i = 0; i < keys.length; i++) {
       if (e.key == keys[i].getAttribute('data-key')) {
-         keys[i].classList.add('active')
+         keys[i].classList.add('active');
       }
 
       if (e.code == 'Space') {
@@ -173,6 +175,7 @@ window.addEventListener('keydown', function (e) {
       if (e.code == 'ArrowRight') {
          right.classList.add('active');
       }
+
    };
 });
 
@@ -238,7 +241,6 @@ window.addEventListener('keydown', function (e) {
       if (e.key == keysRu[i].getAttribute('data-key-rus')) {
          keysRu[i].classList.add('active')
       }
-
       if (e.code == 'Space') {
          spaceKeyRu.classList.add('active')
       }
@@ -343,7 +345,7 @@ window.addEventListener('keyup', function (e) {
          rightRus.classList.remove('active');
       }
    };
-}); 
+});
 
 keyboardRus.classList.add('hidden');
 
@@ -379,4 +381,47 @@ function runOnKeys(...args) {
    });
 
 }
-runOnKeys( 'Space', 'ControlLeft'); 
+runOnKeys('Space', 'ControlLeft');
+
+//implement letters to 'textarea' when clicking on virtual keyboard
+[...keys].forEach(item => item.addEventListener('click', function (event) {
+   if (event.target.dataset.key !== 'Shift' && event.target.dataset.key !== 'Cmd'
+      && event.target.dataset.key !== 'Contr' && event.target.dataset.key !== 'Opt'
+      && event.target.dataset.key !== 'Enter' && event.target.dataset.key !== 'Del'
+      && event.target.dataset.key !== 'Backspace' && event.target.dataset.key !== 'Tab'
+      && event.target.dataset.key !== 'Caps Lock' && event.target.dataset.key !== 'up'
+      && event.target.dataset.key !== 'down' && event.target.dataset.key !== 'left'
+      && event.target.dataset.key !== 'right' && event.target.dataset.key !== 'Space') {
+      text.value += event.target.dataset.key;
+   }
+   for (let i = 0; i < keys.length; i++) {
+      if (event.target.dataset.key == 'Caps Lock' && keys[i].innerText.length === 1
+         && keys[i].classList.contains('in-lower-case')) {
+         keys[i].innerText = keys[i].innerText.toUpperCase();
+         keys[i].setAttribute('data-key', keys[i].innerText);
+         keys[i].classList.add('in-upper-case');
+         keys[i].classList.remove('in-lower-case');
+      } else if (event.target.dataset.key == 'Caps Lock' && keys[i].classList.contains('in-upper-case')) {
+         keys[i].classList.remove('in-upper-case');
+         keys[i].classList.add('in-lower-case');
+         keys[i].innerText = keys[i].innerText.toLowerCase();
+         keys[i].setAttribute('data-key', keys[i].innerText);
+      }
+   }
+   if (event.target.dataset.key == 'Space') {
+      text.value += ' ';
+   }
+   if (event.target.dataset.key == 'Clear') {
+      text.value = ' ';
+   }
+
+}));
+
+
+// focus is only on 'textarea'!!! 
+document.getElementById('textarea').focus();
+document.addEventListener('mousedown', function (event) {
+   if (event.currentTarget !== text) {
+      event.preventDefault();
+   };
+});
