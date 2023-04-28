@@ -60,6 +60,20 @@ html {
    transition: all .2s;
 }
 
+.keyboard-key-ru {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 40px;
+  height: 40px;
+  margin: 2px;
+  border: 1px solid black;
+  color: #222222;
+  background: #fff;
+  transition: all .2s;
+}
+
 .keyboard-key:hover {
    background: #93f29d;
 }
@@ -129,6 +143,59 @@ html {
 
 .keyboard-key[data-key='Cmd'] {
   font-size: 14px;
+}
+
+/* --------------ru keys--------------------- */
+
+
+.keyboard-key-ru[data-key='Backspace'] {
+  width: 100px;
+  font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Tab'] {
+  width: 56px;
+  font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Enter'] {
+  width: 100px;
+  font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Caps Lock'] {
+  width: 84px;
+  font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Shift'] {
+  width: 144px;
+  font-size: 14px;
+}
+
+/* .keyboard-key-ru[data-key='shift'] {
+  width: 86px;
+} */
+
+.keyboard-key-ru[data-key='Space'] {
+  width: 408px;
+  font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Del'] {
+ font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Ctrl'] {
+ font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Opt'] {
+ font-size: 14px;
+}
+
+.keyboard-key-ru[data-key='Cmd'] {
+ font-size: 14px;
 }
 
 
