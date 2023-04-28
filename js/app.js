@@ -35,15 +35,40 @@ language.innerText = 'Для переключения языка комбина�
 
 //create keyboard itself
 let keySymbolsEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', 'Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", "Enter", 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'up', '', 'Ctrl', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
-let keySymbolsRus
-function createKeysButtons() {
-   let buttons = '';
-   for (let i = 0; i < keySymbolsEng.length; i++) {
-      buttons += '<div class="keyboard-key" data-key="' + keySymbolsEng[i] + '" >' + keySymbolsEng[i] + '</div>';
-   };
-   keyboard.innerHTML = buttons;
-}
-createKeysButtons();
+let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'з', 'х', 'ё', 'Del', 'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", "Enter", 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'up', '', 'Ctrl', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
+
+function createKeyButtonsEngl() {
+  let engButton = '';
+  let rusButton = '';
+
+  for (let i = 0; i < keySymbolsEng.length; i++) {
+    engButton += '<div class="keyboard-key" data-key="' + keySymbolsEng[i] + '" >' + keySymbolsEng[i] + '</div>';
+    rusButton += '<div class="keyboard-key" data-key="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
+  };
+
+  keyboard.classList.add('rus');
+  keyboard.classList.add('eng');
+
+  if (keyboard.classList.contains('eng')) {
+    keyboard.innerHTML = engButton;
+  } else if (keyboard.classList.contains('rus')) {
+    keyboard.innerHTML = rusButton;
+  };
+
+};
+createKeyButtonsEngl();
+
+
+
+//function createKeyButtonsRus() {
+//    let rusButtons = '';
+//    for (let i = 0; i < keySymbolsRus.length; i++) {
+//      rusButtons += '<div class="keyboard-key" data-key="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
+//    };
+//    keyboard.innerHTML = rusButtons;
+//}
+
+
 
 let keys = document.querySelectorAll('.keyboard-key');
 let spaceKey = document.querySelector('.keyboard-key[data-key="Space"]');
@@ -72,128 +97,164 @@ right.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform
 
 
 document.querySelector('.textarea').addEventListener('keydown', e => {
-   console.log(e)
+  console.log(e)
 });
 
 
 
 //add styles when are active 
 window.addEventListener('keydown', function (e) {
-   for (let i = 0; i < keys.length; i++) {
-      if (e.key == keys[i].getAttribute('data-key')) {
-         keys[i].classList.add('active')
-      }
-      
-      if (e.code == 'Space') {
-         spaceKey.classList.add('active')
-      }
-      if (e.code == 'ShiftLeft') {
-         shiftLeft.classList.add('active')
-      }
-      if (e.code == 'ShiftRight') {
-         shiftRight.classList.add('active')
-      }
-      if (e.code == 'CapsLock' && keys[i].innerText.length === 1) {
-         capsLock.classList.add('active');
-         keys[i].innerText = keys[i].innerText.toUpperCase();
-         keys[i].setAttribute('data-key',keys[i].innerText);  
-      }
-      if (e.code == 'Backspace') {
-         backSpace.classList.add('active');
-      }
-      if (e.code == 'Tab') {
-         tab.classList.add('active');
-      }
-      if (e.code == 'Delete') {
-        del.classList.add('active');
-     }
-      if (e.code == 'Enter') {
-         enter.classList.add('active');
-      }
-      if (e.code == 'ControlLeft') {
-         control.classList.add('active');
-      }
-      if (e.code == 'AltLeft') {
-         option.classList.add('active');
-      }
-      if (e.code == 'MetaLeft') {
-         command.classList.add('active');
-      }
-      if (e.code == 'ArrowLeft') {
-         left.classList.add('active');
-      }
-      if (e.code == 'ArrowUp') {
-         up.classList.add('active');
-      }
-      if (e.code == 'ArrowDown') {
-         down.classList.add('active');
-      }
-      if (e.code == 'ArrowRight') {
-         right.classList.add('active');
-      }
-   }
-})
+  for (let i = 0; i < keys.length; i++) {
+    if (e.key == keys[i].getAttribute('data-key')) {
+      keys[i].classList.add('active')
+    }
 
-window.addEventListener('keyup', function (e) {
-   for (let i = 0; i < keys.length; i++) {
-      if (e.key == keys[i].getAttribute('data-key')) {
-         keys[i].classList.remove('active');
-      }
-      if (e.code == 'Space') {
-         spaceKey.classList.remove('active');
-      }
-      if (e.code == 'ShiftLeft') {
-         shiftRight.classList.remove('active');
-      }
-      if (e.code == 'ShiftRight') {
-         shiftLeft.classList.remove('active');
-      }
-      if (e.code == 'CapsLock' && keys[i].innerText.length === 1) {
-         capsLock.classList.remove('active');
-         keys[i].innerText = keys[i].innerText.toLowerCase();
-         keys[i].setAttribute('data-key',keys[i].innerText);
-      }
-      if (e.code == 'Backspace') {
-         backSpace.classList.remove('active');
-      }
-      if (e.code == 'Tab') {
-         tab.classList.remove('active');
-      }
-      if (e.code == 'Delete') {
-        del.classList.remove('active');
-      }
-      if (e.code == 'Enter') {
-         enter.classList.remove('active');
-      }
-      if (e.code == 'ControlLeft') {
-         control.classList.remove('active');
-      }
-      if (e.code == 'AltLeft') {
-         option.classList.remove('active');
-      }
-      if (e.code == 'MetaLeft') {
-         command.classList.remove('active');
-      }
-      if (e.code == 'ArrowLeft') {
-         left.classList.remove('active');
-      }
-      if (e.code == 'ArrowUp') {
-         up.classList.remove('active');
-      }
-      if (e.code == 'ArrowDown') {
-         down.classList.remove('active');
-      }
-      if (e.code == 'ArrowRight') {
-         right.classList.remove('active');
-      }
-   }
+    if (e.code == 'Space') {
+      spaceKey.classList.add('active')
+    }
+    if (e.code == 'ShiftLeft') {
+      shiftLeft.classList.add('active')
+    }
+    if (e.code == 'ShiftRight') {
+      shiftRight.classList.add('active')
+    }
+    if (e.code == 'CapsLock' && keys[i].innerText.length === 1) {
+      capsLock.classList.add('active');
+      keys[i].innerText = keys[i].innerText.toUpperCase();
+      keys[i].setAttribute('data-key', keys[i].innerText);
+    }
+    if (e.code == 'Backspace') {
+      backSpace.classList.add('active');
+    }
+    if (e.code == 'Tab') {
+      tab.classList.add('active');
+    }
+    if (e.code == 'Delete') {
+      del.classList.add('active');
+    }
+    if (e.code == 'Enter') {
+      enter.classList.add('active');
+    }
+    if (e.code == 'ControlLeft') {
+      control.classList.add('active');
+    }
+    if (e.code == 'AltLeft') {
+      option.classList.add('active');
+    }
+    if (e.code == 'MetaLeft') {
+      command.classList.add('active');
+    }
+    if (e.code == 'ArrowLeft') {
+      left.classList.add('active');
+    }
+    if (e.code == 'ArrowUp') {
+      up.classList.add('active');
+    }
+    if (e.code == 'ArrowDown') {
+      down.classList.add('active');
+    }
+    if (e.code == 'ArrowRight') {
+      right.classList.add('active');
+    }
+  };
 });
 
+window.addEventListener('keyup', function (e) {
+  for (let i = 0; i < keys.length; i++) {
+    if (e.key == keys[i].getAttribute('data-key')) {
+      keys[i].classList.remove('active');
+    }
+    if (e.code == 'Space') {
+      spaceKey.classList.remove('active');
+    }
+    if (e.code == 'ShiftLeft') {
+      shiftRight.classList.remove('active');
+    }
+    if (e.code == 'ShiftRight') {
+      shiftLeft.classList.remove('active');
+    }
+    if (e.code == 'CapsLock' && keys[i].innerText.length === 1) {
+      capsLock.classList.remove('active');
+      keys[i].innerText = keys[i].innerText.toLowerCase();
+      keys[i].setAttribute('data-key', keys[i].innerText);
+    }
+    if (e.code == 'Backspace') {
+      backSpace.classList.remove('active');
+    }
+    if (e.code == 'Tab') {
+      tab.classList.remove('active');
+    }
+    if (e.code == 'Delete') {
+      del.classList.remove('active');
+    }
+    if (e.code == 'Enter') {
+      enter.classList.remove('active');
+    }
+    if (e.code == 'ControlLeft') {
+      control.classList.remove('active');
+    }
+    if (e.code == 'AltLeft') {
+      option.classList.remove('active');
+    }
+    if (e.code == 'MetaLeft') {
+      command.classList.remove('active');
+    }
+    if (e.code == 'ArrowLeft') {
+      left.classList.remove('active');
+    }
+    if (e.code == 'ArrowUp') {
+      up.classList.remove('active');
+    }
+    if (e.code == 'ArrowDown') {
+      down.classList.remove('active');
+    }
+    if (e.code == 'ArrowRight') {
+      right.classList.remove('active');
+    }
+  };
+});
 
-// window.addEventListener('keydown', function (e) {
-//    for (let i = 0; i < keys.length; i++) {
-//       if (e.code == 'CapsLock' && keys[i].innerText.length === 1) { 
-      
-//       }
+//переключения языка
+//function createKeyButtonsRus() {
+//  let rusButtons = '';
+//  for (let i = 0; i < keySymbolsRus.length; i++) {
+//    rusButtons += '<div class="keyboard-key" data-key="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
+//  };
+//  keyboard.innerHTML = rusButtons;
+//}
+
+//функция отслеживания нажатия кнопок
+//function runOnKeys(func, ...codes) {
+//  let pressed = new Set();
+
+//document.addEventListener('keydown', function(event) {
+//  pressed.add(event.code);
+
+//  for (let code of codes) { // все ли клавиши из набора нажаты?
+//    if (!pressed.has(code)) {
+//      return;
 //    }
-// });
+//  }
+//  pressed.clear();
+//  func();
+//});
+
+//document.addEventListener('keyup', function(event) {
+//  pressed.delete(event.code);
+//});
+
+//}
+
+//runOnKeys(
+//() => createKeyButtonsRus(),
+//"ControlLeft",
+//"Space"
+//);
+
+
+//window.addEventListener('keydown', function (e) {
+//  for (let i = 0; i < keys.length; i++) {
+//    if (keyboard.classList.contains('rus') && e.code == 'ControlLeft' && e.code == 'Space') {
+//    }
+//  }
+//})
