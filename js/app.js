@@ -31,7 +31,7 @@ language.className = 'language';
 language.innerText = 'Для переключения языка комбинация: левыe ctrl + space';
 
 
-
+keyboard.classList.add('eng');
 
 //create keyboard itself
 let keySymbolsEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', 'Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", "Enter", 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'up', '', 'Ctrl', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
@@ -45,29 +45,45 @@ function createKeyButtonsEngl() {
     engButton += '<div class="keyboard-key" data-key="' + keySymbolsEng[i] + '" >' + keySymbolsEng[i] + '</div>';
     rusButton += '<div class="keyboard-key" data-key="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
   };
+  keyboard.innerHTML = engButton;
 
-  keyboard.classList.add('rus');
-  keyboard.classList.add('eng');
+  window.addEventListener('keydown', function (event) {
+    for (let i = 0; i < keys.length; i++) {
+      if (event.code == 'Space'&& event.ctrlKey || event.metaKey) {
+        event.preventDefault();
+        keyboard.innerHTML = rusButton;
+        keyboard.classList.remove('eng');
+        keyboard.classList.add('rus');
+      }
+      //else if (event.key == ' ') {
+      //  //keyboard.classList.toggle('eng')
+      //  keyboard.innerHTML = engButton;
+      //  keyboard.classList.remove('rus');
+      //  keyboard.classList.add('eng');
+      //}
+    };
+  });
 
-  if (keyboard.classList.contains('eng')) {
-    keyboard.innerHTML = engButton;
-  } else if (keyboard.classList.contains('rus')) {
-    keyboard.innerHTML = rusButton;
-  };
+  //if (keyboard.classList.contains('eng')) {
+  //  keyboard.innerHTML = engButton;
+  //  keyboard.classList.remove('rus');
+  //} else if (keyboard.classList.contains('rus')) {
+  //  keyboard.innerHTML = rusButton;
+  //  keyboard.classList.remove('eng');
+  //};
 
 };
 createKeyButtonsEngl();
 
 
-
-//function createKeyButtonsRus() {
-//    let rusButtons = '';
-//    for (let i = 0; i < keySymbolsRus.length; i++) {
-//      rusButtons += '<div class="keyboard-key" data-key="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
-//    };
-//    keyboard.innerHTML = rusButtons;
-//}
-
+function createKeyButtonsRus() {
+    let rusButtons = '';
+    for (let i = 0; i < keySymbolsRus.length; i++) {
+      rusButtons += '<div class="keyboard-key" data-key="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
+    };
+    keyboard.innerHTML = rusButtons;
+}
+//createKeyButtonsRus()
 
 
 let keys = document.querySelectorAll('.keyboard-key');
@@ -248,7 +264,7 @@ window.addEventListener('keyup', function (e) {
 //runOnKeys(
 //() => createKeyButtonsRus(),
 //"ControlLeft",
-//"Space"
+//" "
 //);
 
 
@@ -258,3 +274,30 @@ window.addEventListener('keyup', function (e) {
 //    }
 //  }
 //})
+
+function runOnKeys(func, ...args) {
+
+  let arrChars = [];                    // массив одновременно нажатых клавиш
+
+  document.addEventListener("keydown", function (event) {
+      if (event.repeat) return;         // повторы не обрабатываем
+      arrChars.push(event.code);        // запоминаем код нажатой и пока еще не отпущенной клавиши
+  });
+
+  document.addEventListener("keyup", function (event) {
+      if (arrChars.length == 0) return; // нечего обрабатывать, завершаем функцию
+
+      let runFunc = true;
+      for (let arg of args) {           // нажаты ли одновременно отслеживаемые клавиши
+          if (!arrChars.includes(arg)) {
+              runFunc = false;
+              break;
+          }
+      }
+      if (runFunc) createKeyButtonsRus();              // если нажаты, запускаем заданный код
+
+      arrChars.length = 0;              // очистим массив одновременно нажатых клавиш
+  });
+
+}
+runOnKeys('ControlLeft','Space')
