@@ -13,6 +13,8 @@ html {
 }
 
 .conteiner {
+   display: flex;
+   flex-direction: column;
    margin: 0 auto;
    font-family: "Trebuchet MS", "Helvetica", sans-serif;
 }
@@ -45,7 +47,7 @@ html {
    flex-wrap: wrap;
    justify-content: center;
    width: 700px;
-   margin: 30px auto;
+   margin: 30px auto 10px;
    padding: 10px 0;
    background: silver;
    border: 3px solid #222222;
@@ -160,4 +162,83 @@ html {
 
 .hidden {
    display: none;
+}
+
+.night-mode {
+   position: relative;
+   width: 60px;
+   height: 20px;
+   background-color: silver;
+   border-radius: 50px;
+   display: flex;
+   align-self: center;
+   align-items: center;
+   cursor: pointer;
+   transition: .2s;
+}
+
+.body-active {
+   background-color: rgb(54,54,54);
+}
+
+.night-mode-active {
+   background-color: #222222;
+}
+
+.toggle-circle {
+   width: 14px;
+   height: 14px;
+   background-color: rgb(54, 54, 54);
+   border-radius: 50px;
+   margin: 0 5px;
+   position: absolute;
+   left: 0;
+   transition: .2s;
+}
+
+.circle-active {
+   left: 60%;
+   background-color: #fff;
+}
+
+.keyboard-night {
+   background-color: #585858;
+}
+
+.keys-night {
+   background-color: #3c3c3c;
+   color: #fff;
+}
+
+.text-night {
+   background-color: #2b2b2b;
+   color: #fff;
+}
+
+
+.icon-night {
+   background: #fff;
+}
+
+
+.descr-night,
+.lang-night,
+.title-night {
+   color: #fff;
+}
+
+.keys-night-remove {
+   animation: keys_night_animation 0.5s forwards;
+}
+
+@keyframes keys_night_animation {
+   0% {
+      background-color: #fff;
+      color: #000;
+   }
+
+   100% {
+      background-color: #333;
+      color: #fff;
+   }
 }

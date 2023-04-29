@@ -24,6 +24,11 @@ conteiner.append(keyboardRus);
 keyboardRus.className = 'keyboard-rus';
 keyboard.id = 'keyboard-rus';
 
+let nightMode = document.createElement('div');
+conteiner.append(nightMode);
+nightMode.className = 'night-mode';
+
+nightMode.innerHTML = '<div class="toggle-circle"><dive>'
 
 let description = document.createElement('p');
 conteiner.append(description);
@@ -98,20 +103,21 @@ const leftRus = document.querySelector('.keyboard-key-ru[data-keyrus="left"]');
 const upRus = document.querySelector('.keyboard-key-ru[data-keyrus="up"]');
 const downRus = document.querySelector('.keyboard-key-ru[data-keyrus="down"]');
 const rightRus = document.querySelector('.keyboard-key-ru[data-keyrus="right"]');
-//let nightMode = document.querySelector('.keyboard-key[data-key="night"]');
+const circle = document.querySelector('.toggle-circle');
 const body = document.querySelector('.body');
 
-up.innerHTML = '<img src ="../icons/117461.png" style="width: 20px">';
-down.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(180deg)">';
-left.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(-90deg)">';
-right.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(90deg)">';
+up.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px">';
+down.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px; transform: rotate(180deg)">';
+left.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px; transform: rotate(-90deg)">';
+right.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px; transform: rotate(90deg)">';
 
 
-upRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px">';
-downRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(180deg)">';
-leftRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(-90deg)">';
-rightRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(90deg)">';
+upRus.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px">';
+downRus.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px; transform: rotate(180deg)">';
+leftRus.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px; transform: rotate(-90deg)">';
+rightRus.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width: 20px; transform: rotate(90deg)">';
 
+const icon = document.querySelectorAll('.icon');
 
 //identifying of key codes
 // document.querySelector('.textarea').addEventListener('keydown', e => {
@@ -379,6 +385,7 @@ runOnKeys('Space', 'ControlLeft');
       && event.currentTarget.dataset.key !== 'right' && event.target.dataset.key !== 'Space') {
       text.value += event.target.dataset.key;
    }
+
    for (let i = 0; i < keys.length; i++) {
       if (event.target.dataset.key == 'Caps Lock' && keys[i].innerText.length === 1
          && keys[i].classList.contains('in-lower-case')) {
@@ -393,10 +400,11 @@ runOnKeys('Space', 'ControlLeft');
          keys[i].setAttribute('data-key', keys[i].innerText);
       }
    }
+
    if (event.target.dataset.key == 'Space') {
       text.value += ' ';
    }
-      if (event.target.dataset.key == 'Enter') {
+   if (event.target.dataset.key == 'Enter') {
       text.value += '\n';
    }
    if (event.target.dataset.key == 'Clear') {
@@ -416,6 +424,7 @@ runOnKeys('Space', 'ControlLeft');
       && event.currentTarget.dataset.keyrus !== 'right' && event.target.dataset.keyrus !== 'Space') {
       text.value += event.target.dataset.keyrus;
    }
+
    for (let i = 0; i < keys.length; i++) {
       if (event.target.dataset.keyrus == 'Caps Lock' && keys[i].innerText.length === 1
          && keys[i].classList.contains('in-lower-case')) {
@@ -430,10 +439,11 @@ runOnKeys('Space', 'ControlLeft');
          keys[i].setAttribute('data-keyrus', keys[i].innerText);
       }
    }
+
    if (event.target.dataset.keyrus == 'Space') {
       text.value += ' ';
    }
-      if (event.target.dataset.keyrus == 'Enter') {
+   if (event.target.dataset.keyrus == 'Enter') {
       text.value += '\n';
    }
    if (event.target.dataset.keyrus == 'Clear') {
@@ -442,11 +452,28 @@ runOnKeys('Space', 'ControlLeft');
 
 }));
 
-
 // focus is only on 'textarea'!!! 
 document.getElementById('textarea').focus();
 document.addEventListener('mousedown', function (event) {
    if (event.currentTarget !== text) {
       event.preventDefault();
    };
+});
+
+//night mode
+nightMode.addEventListener('click', function () {
+   circle.classList.toggle('circle-active');
+   body.classList.toggle('body-active');
+   title.classList.toggle('title-night');
+   description.classList.toggle('descr-night');
+   language.classList.toggle('lang-night');
+   nightMode.classList.toggle('night-mode-active');
+   keyboard.classList.toggle('keyboard-night');
+   text.classList.toggle('text-night');
+   [...icon].forEach(item => {
+      item.classList.toggle('icon-night')
+   });
+   for (let i = 0; i < keys.length; i++) {
+      keys[i].classList.toggle('keys-night')
+   }
 });
