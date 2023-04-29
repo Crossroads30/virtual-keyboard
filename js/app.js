@@ -46,7 +46,7 @@ let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-',
 function createKeyButtonsRus() {
    let rusButtons = '';
    for (let i = 0; i < keySymbolsRus.length; i++) {
-      rusButtons += '<div class="keyboard-key-ru" data-key-rus="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
+      rusButtons += '<div class="keyboard-key-ru" data-keyrus="' + keySymbolsRus[i] + '" >' + keySymbolsRus[i] + '</div>';
    };
    keyboardRus.innerHTML = rusButtons;
 }
@@ -69,7 +69,6 @@ createKeyButtonsEng();
 
 const keys = document.querySelectorAll('.keyboard-key');
 const spaceKey = document.querySelector('.keyboard-key[data-key="Space"]');
-const shiftRight = document.querySelector('.keyboard-key[data-key="Shift"]');
 const shiftLeft = document.querySelector('.keyboard-key[data-key="Shift"]');
 const capsLock = document.querySelector('.keyboard-key[data-key="Caps Lock"]');
 const backSpace = document.querySelector('.keyboard-key[data-key="Backspace"]');
@@ -85,21 +84,20 @@ const down = document.querySelector('.keyboard-key[data-key="down"]');
 const right = document.querySelector('.keyboard-key[data-key="right"]');
 
 const keysRu = document.querySelectorAll('.keyboard-key-ru');
-const spaceKeyRu = document.querySelector('.keyboard-key-ru[data-key-rus="Space"]');
-const shiftRightRu = document.querySelector('.keyboard-key-ru[data-key-rus="Shift"]');
-const shiftLeftRu = document.querySelector('.keyboard-key-ru[data-ke-rusy="Shift"]');
-const capsLockRu = document.querySelector('.keyboard-key-ru[data-key-rus="Caps Lock"]');
-const backSpaceRu = document.querySelector('.keyboard-key-ru[data-key-rus="Backspace"]');
-const tabRu = document.querySelector('.keyboard-key-ru[data-key-rus="Tab"]');
-const delRu = document.querySelector('.keyboard-key-ru[data-key-rus="Del"]');
-const enterRu = document.querySelector('.keyboard-key-ru[data-key-rus="Enter"]');
-const controlRu = document.querySelector('.keyboard-key-ru[data-key-rus="Contr"]');
-const optionRu = document.querySelector('.keyboard-key-ru[data-key-rus="Opt"]');
-const commandRu = document.querySelector('.keyboard-key-ru[data-key-rus="Cmd"]');
-const leftRus = document.querySelector('.keyboard-key-ru[data-key-rus="left"]');
-const upRus = document.querySelector('.keyboard-key-ru[data-key-rus="up"]');
-const downRus = document.querySelector('.keyboard-key-ru[data-key-rus="down"]');
-const rightRus = document.querySelector('.keyboard-key-ru[data-key-rus="right"]');
+const spaceKeyRu = document.querySelector('.keyboard-key-ru[data-keyrus="Space"]');
+const shiftLeftRu = document.querySelector('.keyboard-key-ru[data-keyrus="Shift"]');
+const capsLockRu = document.querySelector('.keyboard-key-ru[data-keyrus="Caps Lock"]');
+const backSpaceRu = document.querySelector('.keyboard-key-ru[data-keyrus="Backspace"]');
+const tabRu = document.querySelector('.keyboard-key-ru[data-keyrus="Tab"]');
+const delRu = document.querySelector('.keyboard-key-ru[data-keyrus="Del"]');
+const enterRu = document.querySelector('.keyboard-key-ru[data-keyrus="Enter"]');
+const controlRu = document.querySelector('.keyboard-key-ru[data-keyrus="Contr"]');
+const optionRu = document.querySelector('.keyboard-key-ru[data-keyrus="Opt"]');
+const commandRu = document.querySelector('.keyboard-key-ru[data-keyrus="Cmd"]');
+const leftRus = document.querySelector('.keyboard-key-ru[data-keyrus="left"]');
+const upRus = document.querySelector('.keyboard-key-ru[data-keyrus="up"]');
+const downRus = document.querySelector('.keyboard-key-ru[data-keyrus="down"]');
+const rightRus = document.querySelector('.keyboard-key-ru[data-keyrus="right"]');
 //let nightMode = document.querySelector('.keyboard-key[data-key="night"]');
 const body = document.querySelector('.body');
 
@@ -115,11 +113,10 @@ leftRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transfo
 rightRus.innerHTML = '<img src ="../icons/117461.png" style="width: 20px; transform: rotate(90deg)">';
 
 
-
 //identifying of key codes
-document.querySelector('.textarea').addEventListener('keydown', e => {
-   console.log(e)
-});
+// document.querySelector('.textarea').addEventListener('keydown', e => {
+//    console.log(e)
+// });
 
 //add hilights when 'keydown' 
 window.addEventListener('keydown', function (e) {
@@ -133,9 +130,6 @@ window.addEventListener('keydown', function (e) {
       }
       if (e.code == 'ShiftLeft') {
          shiftLeft.classList.add('active')
-      }
-      if (e.code == 'ShiftRight') {
-         shiftRight.classList.add('active')
       }
       if (e.code == 'CapsLock' && keys[i].innerText.length === 1) {
          capsLock.classList.add('active');
@@ -189,9 +183,6 @@ window.addEventListener('keyup', function (e) {
          spaceKey.classList.remove('active');
       }
       if (e.code == 'ShiftLeft') {
-         shiftRight.classList.remove('active');
-      }
-      if (e.code == 'ShiftRight') {
          shiftLeft.classList.remove('active');
       }
       if (e.code == 'CapsLock' && keys[i].innerText.length === 1) {
@@ -238,22 +229,19 @@ window.addEventListener('keyup', function (e) {
 //add hilights for rus language when 'keydown' 
 window.addEventListener('keydown', function (e) {
    for (let i = 0; i < keysRu.length; i++) {
-      if (e.key == keysRu[i].getAttribute('data-key-rus')) {
-         keysRu[i].classList.add('active')
+      if (e.key == keysRu[i].getAttribute('data-keyrus')) {
+         keysRu[i].classList.add('active');
       }
       if (e.code == 'Space') {
-         spaceKeyRu.classList.add('active')
+         spaceKeyRu.classList.add('active');
       }
       if (e.code == 'ShiftLeft') {
          shiftLeftRu.classList.add('active')
       }
-      if (e.code == 'ShiftRight') {
-         shiftRightRu.classList.add('active')
-      }
       if (e.code == 'CapsLock' && keysRu[i].innerText.length === 1) {
          capsLockRu.classList.add('active');
          keysRu[i].innerText = keysRu[i].innerText.toUpperCase();
-         keysRu[i].setAttribute('data-key-rus', keysRu[i].innerText);
+         keysRu[i].setAttribute('data-keyrus', keysRu[i].innerText);
       }
       if (e.code == 'Backspace') {
          backSpaceRu.classList.add('active');
@@ -294,22 +282,19 @@ window.addEventListener('keydown', function (e) {
 //remove hilights for rus language when 'keyup'
 window.addEventListener('keyup', function (e) {
    for (let i = 0; i < keysRu.length; i++) {
-      if (e.key == keysRu[i].getAttribute('data-key-rus')) {
+      if (e.key == keysRu[i].getAttribute('data-keyrus')) {
          keysRu[i].classList.remove('active');
       }
       if (e.code == 'Space') {
          spaceKeyRu.classList.remove('active');
       }
       if (e.code == 'ShiftLeft') {
-         shiftRightRu.classList.remove('active');
-      }
-      if (e.code == 'ShiftRight') {
          shiftLeftRu.classList.remove('active');
       }
       if (e.code == 'CapsLock' && keysRu[i].innerText.length === 1) {
          capsLockRu.classList.remove('active');
          keysRu[i].innerText = keysRu[i].innerText.toLowerCase();
-         keysRu[i].setAttribute('data-key-rus', keysRu[i].innerText);
+         keysRu[i].setAttribute('data-keyrus', keysRu[i].innerText);
       }
       if (e.code == 'Backspace') {
          backSpaceRu.classList.remove('active');
@@ -359,7 +344,7 @@ function runOnKeys(...args) {
       arrChars.push(event.code);        // remember the code of the pressed and not yet released key
    });
 
-   document.addEventListener("keyup", function (event) {
+   document.addEventListener("keyup", function () {
       if (arrChars.length == 0) return;    // nothing to process, end the function
 
       let runFunc = true;
@@ -389,9 +374,9 @@ runOnKeys('Space', 'ControlLeft');
       && event.target.dataset.key !== 'Contr' && event.target.dataset.key !== 'Opt'
       && event.target.dataset.key !== 'Enter' && event.target.dataset.key !== 'Del'
       && event.target.dataset.key !== 'Backspace' && event.target.dataset.key !== 'Tab'
-      && event.target.dataset.key !== 'Caps Lock' && event.target.dataset.key !== 'up'
-      && event.target.dataset.key !== 'down' && event.target.dataset.key !== 'left'
-      && event.target.dataset.key !== 'right' && event.target.dataset.key !== 'Space') {
+      && event.target.dataset.key !== 'Caps Lock' && event.currentTarget.dataset.key !== 'up'
+      && event.currentTarget.dataset.key !== 'down' && event.currentTarget.dataset.key !== 'left'
+      && event.currentTarget.dataset.key !== 'right' && event.target.dataset.key !== 'Space') {
       text.value += event.target.dataset.key;
    }
    for (let i = 0; i < keys.length; i++) {
@@ -411,7 +396,47 @@ runOnKeys('Space', 'ControlLeft');
    if (event.target.dataset.key == 'Space') {
       text.value += ' ';
    }
+      if (event.target.dataset.key == 'Enter') {
+      text.value += '\n';
+   }
    if (event.target.dataset.key == 'Clear') {
+      text.value = ' ';
+   }
+
+}));
+
+//implement letters to 'textarea' when clicking on virtual keyboard-rus
+[...keysRu].forEach(item => item.addEventListener('click', function (event) {
+   if (event.target.dataset.keyrus !== 'Shift' && event.target.dataset.keyrus !== 'Cmd'
+      && event.target.dataset.keyrus !== 'Contr' && event.target.dataset.keyrus !== 'Opt'
+      && event.target.dataset.keyrus !== 'Enter' && event.target.dataset.keyrus !== 'Del'
+      && event.target.dataset.keyrus !== 'Backspace' && event.target.dataset.keyrus !== 'Tab'
+      && event.target.dataset.keyrus !== 'Caps Lock' && event.currentTarget.dataset.keyrus !== 'up'
+      && event.currentTarget.dataset.keyrus !== 'down' && event.currentTarget.dataset.keyrus !== 'left'
+      && event.currentTarget.dataset.keyrus !== 'right' && event.target.dataset.keyrus !== 'Space') {
+      text.value += event.target.dataset.keyrus;
+   }
+   for (let i = 0; i < keys.length; i++) {
+      if (event.target.dataset.keyrus == 'Caps Lock' && keys[i].innerText.length === 1
+         && keys[i].classList.contains('in-lower-case')) {
+         keys[i].innerText = keys[i].innerText.toUpperCase();
+         keys[i].setAttribute('data-keyrus', keys[i].innerText);
+         keys[i].classList.add('in-upper-case');
+         keys[i].classList.remove('in-lower-case');
+      } else if (event.target.dataset.keyrus == 'Caps Lock' && keys[i].classList.contains('in-upper-case')) {
+         keys[i].classList.remove('in-upper-case');
+         keys[i].classList.add('in-lower-case');
+         keys[i].innerText = keys[i].innerText.toLowerCase();
+         keys[i].setAttribute('data-keyrus', keys[i].innerText);
+      }
+   }
+   if (event.target.dataset.keyrus == 'Space') {
+      text.value += ' ';
+   }
+      if (event.target.dataset.keyrus == 'Enter') {
+      text.value += '\n';
+   }
+   if (event.target.dataset.keyrus == 'Clear') {
       text.value = ' ';
    }
 
