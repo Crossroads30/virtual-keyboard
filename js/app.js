@@ -39,7 +39,7 @@ description.innerText = 'Клавиатура создана в операцио
 let language = document.createElement('p');
 conteiner.append(language);
 language.className = 'language';
-language.innerText = 'Для переключения языка - комбинация клавиш "space" + "control".';
+language.innerText = 'Для переключения языка - комбинация клавиш "shift" + "control".';
 
 
 keyboard.classList.add('eng');
@@ -120,61 +120,60 @@ rightRus.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width:
 const icon = document.querySelectorAll('.icon');
 
 //identifying of key codes
-document.querySelector('.textarea').addEventListener('keydown', e => {
-   console.log(e)
-});
+// document.querySelector('.textarea').addEventListener('keydown', e => {
+//    console.log(e)
+// });
 
 //add hilights when 'keydown' 
 window.addEventListener('keydown', function (e) {
    for (let i = 0; i < keys.length; i++) {
       if (e.key == keys[i].getAttribute('data-key')) {
          keys[i].classList.add('active');
-      }
-
+      };
       if (e.code == 'Space') {
          spaceKey.classList.add('active')
-      }
-      if (e.code == 'ShiftLeft') {
+      };
+      if (e.code == 'ShiftLeft') { 
          shiftLeft.classList.add('active')
-      }
+      };
       if (e.code == 'CapsLock' && keys[i].innerText.length === 1) {
          capsLock.classList.add('active');
          keys[i].innerText = keys[i].innerText.toUpperCase();
          keys[i].setAttribute('data-key', keys[i].innerText);
-      }
+      };
       if (e.code == 'Backspace') {
          backSpace.classList.add('active');
-      }
+      };
       if (e.code == 'Tab') {
          tab.classList.add('active');
-      }
+      };
       if (e.code == 'Delete') {
          del.classList.add('active');
-      }
+      };
       if (e.code == 'Enter') {
          enter.classList.add('active');
-      }
+      };
       if (e.code == 'ControlLeft') {
          control.classList.add('active');
-      }
+      };
       if (e.code == 'AltLeft') {
          option.classList.add('active');
-      }
+      };
       if (e.code == 'MetaLeft') {
          command.classList.add('active');
-      }
+      };
       if (e.code == 'ArrowLeft') {
          left.classList.add('active');
-      }
+      };
       if (e.code == 'ArrowUp') {
          up.classList.add('active');
-      }
+      };
       if (e.code == 'ArrowDown') {
          down.classList.add('active');
-      }
+      };
       if (e.code == 'ArrowRight') {
          right.classList.add('active');
-      }
+      };
 
    };
 });
@@ -346,40 +345,22 @@ if (localStorage.getItem('lang') !== 'rus') {
 }
 
 //function for languages to change
-function runOnKeys(...args) {
-
-   let arrChars = [];                    // array of at the same time pressed keys
-
-   document.addEventListener("keydown", function (event) {
-      if (event.repeat) return;         // repetitions are not processed
-      arrChars.push(event.code);        // remember the code of the pressed and not yet released key
-   });
-
-   document.addEventListener("keyup", function () {
-      if (arrChars.length == 0) return;    // nothing to process, end the function
-
-      let runFunc = true;
-      for (let arg of args) {              // whether monitored keys are pressed at the same time
-         if (!arrChars.includes(arg)) {
-            runFunc = false;
-            break;
-         }
-      }
-      if (runFunc && keyboardRus.classList.contains('hidden')) {
-         keyboardRus.classList.remove('hidden');
-         keyboard.classList.add('hidden');
-         localStorage.setItem('lang','rus');
-      } else if (runFunc && keyboard.classList.contains('hidden')) {    // if pressed, run the given code
-         keyboard.classList.remove('hidden');
-         keyboardRus.classList.add('hidden');
-         localStorage.setItem('lang','eng');
-      }
-
-      arrChars.length = 0;              // clear the array of at the same time pressed keys
-   });
-
-}
-runOnKeys('Space', 'ControlLeft');
+window.addEventListener('keydown', function (e) {
+   if (e.code == 'ShiftLeft') { // change language when 'shift'+'control' is down 
+      if (e.ctrlKey) {
+         if (keyboardRus.classList.contains('hidden')) {
+            keyboardRus.classList.remove('hidden');
+            keyboard.classList.add('hidden');
+            localStorage.setItem('lang', 'rus');
+         } else if (keyboard.classList.contains('hidden')) {  
+            keyboard.classList.remove('hidden');
+            keyboardRus.classList.add('hidden');
+            localStorage.setItem('lang', 'eng');
+         };
+         return;
+      };
+   };
+});
 
 //implement letters to 'textarea' when clicking on virtual keyboard
 [...keys].forEach(item => item.addEventListener('click', function (event) {
@@ -418,46 +399,28 @@ runOnKeys('Space', 'ControlLeft');
       text.value = ' ';
    };
    if (event.target.dataset.key == 'Backspace') {
-      let currentIndex = text.selectionStart;
-      // text.value = text.value.slice(0, -1);
-      text.value = `${text.value.slice(0, currentIndex -1)}${text.value.slice(currentIndex, text.value.length)}`
-return
+      // let currentIndex = text.selectionStart;
+      text.value = text.value.slice(0, -1);
+      // text.value = `${text.value.slice(0, currentIndex - 1)}${text.value.slice(currentIndex, text.value.length)}`
+      // return
    };
    if (event.target.dataset.key == 'Del') {
       text.value = text.value.slice(1, -1);
    };
    if (event.currentTarget.dataset.key == 'left') {
-      // text.setSelectionRange(0,0);
-      // text.setRangeText("", 0, 0, "select");
-      // const range = text.createTextRange();
-      // range.move();
-
-      // let e = document.createEvent('HTMLEvents')
-      //  e = new KeyboardEvent("keydown", {
-      //    bubbles: true,
-      //    cancelable: true,
-      //    char: "Q",
-      //    key: "q",
-      //    shiftKey: true,
-      //    keyCode: 81
-      // });
-      // text.dispatchEvent(e);
-      // let simulatadPress = function (type,keyCodeArg, element) {
-      //    let evt = document.createEvent('HTMLEvents')
-      //    evt.initEvent(type, true, false);
-      //    evt.keyCode = keyCodeArg;
-      //    evt.which = keyCodeArg;
-      //    element.dispatchEvent(event);
-      // }
-      // simulatadPress('keydown', 13, text);
-      
+      text.value += '◄';
    };
    if (event.currentTarget.dataset.key == 'right') {
+      text.value += '►';
+   };
+   if (event.currentTarget.dataset.key == 'down') {
+      text.value += '▼';
+   };
+   if (event.currentTarget.dataset.key == 'up') {
+      text.value += '▲';
    };
 
 }));
-
-
 
 //implement letters to 'textarea' when clicking on virtual keyboard-rus
 [...keysRu].forEach(item => item.addEventListener('click', function (event) {
@@ -498,7 +461,21 @@ return
    if (event.target.dataset.keyrus == 'Backspace') {
       text.value = text.value.slice(0, -1);
    };
-
+   if (event.target.dataset.keyrus == 'Del') {
+      text.value = text.value.slice(1, -1);
+   };
+   if (event.currentTarget.dataset.keyrus == 'left') {
+      text.value += '◄';
+   };
+   if (event.currentTarget.dataset.keyrus == 'right') {
+      text.value += '►';
+   };
+   if (event.currentTarget.dataset.keyrus == 'down') {
+      text.value += '▼';
+   };
+   if (event.currentTarget.dataset.keyrus == 'up') {
+      text.value += '▲';
+   };
 
 }));
 
@@ -509,6 +486,8 @@ document.addEventListener('mousedown', function (event) {
       event.preventDefault();
    };
 });
+
+//additional
 
 //night mode
 nightMode.addEventListener('click', function () {
@@ -531,3 +510,4 @@ nightMode.addEventListener('click', function () {
       keysRu[i].classList.toggle('keys-night');
    }
 });
+//---------------------------------------------------
