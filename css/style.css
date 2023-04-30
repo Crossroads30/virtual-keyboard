@@ -22,7 +22,8 @@ html {
 .title {
    display: block;
    font-size: 30px;
-   color: rgba(107, 246, 7, 0.909);
+   /* color: rgba(107, 246, 7, 0.909); */
+   color: silver;
 }
 
 .textarea {
@@ -70,11 +71,11 @@ html {
 }
 
 .keyboard-key:hover {
-   background: #93f29d;
+   background: #f1de7d;
 }
 
 .keyboard-key-ru:hover {
-   background: #93f29d;
+   background: #f1de7d;
 }
 
 .keyboard-key:active {
@@ -217,7 +218,7 @@ html {
 
 
 .icon-night {
-   background: #fff;
+   filter: invert(100%);
 }
 
 

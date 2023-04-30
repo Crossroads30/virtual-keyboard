@@ -12,7 +12,7 @@ let text = document.createElement('textarea');
 conteiner.append(text);
 text.className = 'textarea';
 text.id = 'textarea';
-text.setAttribute('autofocus', '')
+text.setAttribute('autofocus', '');
 
 let keyboard = document.createElement('div');
 conteiner.append(keyboard);
@@ -46,7 +46,7 @@ keyboard.classList.add('eng');
 
 //creating rus symbols
 
-let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'з', 'х', 'ё', 'Del', 'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", "Enter", 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'up', 'Clear', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
+let keySymbolsRus = [']', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'з', 'х', 'ъ', 'Del', 'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", "Enter", 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'up', 'Clear', 'Contr', 'Opt', 'Cmd', 'Space', 'left', 'down', 'right'];
 
 function createKeyButtonsRus() {
    let rusButtons = '';
@@ -120,9 +120,9 @@ rightRus.innerHTML = '<img class="icon" src ="../icons/117461.png" style="width:
 const icon = document.querySelectorAll('.icon');
 
 //identifying of key codes
-// document.querySelector('.textarea').addEventListener('keydown', e => {
-//    console.log(e)
-// });
+document.querySelector('.textarea').addEventListener('keydown', e => {
+   console.log(e)
+});
 
 //add hilights when 'keydown' 
 window.addEventListener('keydown', function (e) {
@@ -338,7 +338,12 @@ window.addEventListener('keyup', function (e) {
    };
 });
 
-keyboardRus.classList.add('hidden');
+
+if (localStorage.getItem('lang') !== 'rus') {
+   keyboardRus.classList.add('hidden');
+} else {
+   keyboard.classList.add('hidden');
+}
 
 //function for languages to change
 function runOnKeys(...args) {
@@ -362,10 +367,12 @@ function runOnKeys(...args) {
       }
       if (runFunc && keyboardRus.classList.contains('hidden')) {
          keyboardRus.classList.remove('hidden');
-         keyboard.classList.add('hidden')
+         keyboard.classList.add('hidden');
+         localStorage.setItem('lang','rus');
       } else if (runFunc && keyboard.classList.contains('hidden')) {    // if pressed, run the given code
          keyboard.classList.remove('hidden');
          keyboardRus.classList.add('hidden');
+         localStorage.setItem('lang','eng');
       }
 
       arrChars.length = 0;              // clear the array of at the same time pressed keys
@@ -384,7 +391,7 @@ runOnKeys('Space', 'ControlLeft');
       && event.currentTarget.dataset.key !== 'down' && event.currentTarget.dataset.key !== 'left'
       && event.currentTarget.dataset.key !== 'right' && event.target.dataset.key !== 'Space') {
       text.value += event.target.dataset.key;
-   }
+   };
 
    for (let i = 0; i < keys.length; i++) {
       if (event.target.dataset.key == 'Caps Lock' && keys[i].innerText.length === 1
@@ -398,20 +405,59 @@ runOnKeys('Space', 'ControlLeft');
          keys[i].classList.add('in-lower-case');
          keys[i].innerText = keys[i].innerText.toLowerCase();
          keys[i].setAttribute('data-key', keys[i].innerText);
-      }
-   }
+      };
+   };
 
    if (event.target.dataset.key == 'Space') {
       text.value += ' ';
-   }
+   };
    if (event.target.dataset.key == 'Enter') {
       text.value += '\n';
-   }
+   };
    if (event.target.dataset.key == 'Clear') {
       text.value = ' ';
-   }
+   };
+   if (event.target.dataset.key == 'Backspace') {
+      let currentIndex = text.selectionStart;
+      // text.value = text.value.slice(0, -1);
+      text.value = `${text.value.slice(0, currentIndex -1)}${text.value.slice(currentIndex, text.value.length)}`
+return
+   };
+   if (event.target.dataset.key == 'Del') {
+      text.value = text.value.slice(1, -1);
+   };
+   if (event.currentTarget.dataset.key == 'left') {
+      // text.setSelectionRange(0,0);
+      // text.setRangeText("", 0, 0, "select");
+      // const range = text.createTextRange();
+      // range.move();
+
+      // let e = document.createEvent('HTMLEvents')
+      //  e = new KeyboardEvent("keydown", {
+      //    bubbles: true,
+      //    cancelable: true,
+      //    char: "Q",
+      //    key: "q",
+      //    shiftKey: true,
+      //    keyCode: 81
+      // });
+      // text.dispatchEvent(e);
+      // let simulatadPress = function (type,keyCodeArg, element) {
+      //    let evt = document.createEvent('HTMLEvents')
+      //    evt.initEvent(type, true, false);
+      //    evt.keyCode = keyCodeArg;
+      //    evt.which = keyCodeArg;
+      //    element.dispatchEvent(event);
+      // }
+      // simulatadPress('keydown', 13, text);
+      
+   };
+   if (event.currentTarget.dataset.key == 'right') {
+   };
 
 }));
+
+
 
 //implement letters to 'textarea' when clicking on virtual keyboard-rus
 [...keysRu].forEach(item => item.addEventListener('click', function (event) {
@@ -423,7 +469,7 @@ runOnKeys('Space', 'ControlLeft');
       && event.currentTarget.dataset.keyrus !== 'down' && event.currentTarget.dataset.keyrus !== 'left'
       && event.currentTarget.dataset.keyrus !== 'right' && event.target.dataset.keyrus !== 'Space') {
       text.value += event.target.dataset.keyrus;
-   }
+   };
 
    for (let i = 0; i < keys.length; i++) {
       if (event.target.dataset.keyrus == 'Caps Lock' && keys[i].innerText.length === 1
@@ -437,18 +483,22 @@ runOnKeys('Space', 'ControlLeft');
          keys[i].classList.add('in-lower-case');
          keys[i].innerText = keys[i].innerText.toLowerCase();
          keys[i].setAttribute('data-keyrus', keys[i].innerText);
-      }
-   }
+      };
+   };
 
    if (event.target.dataset.keyrus == 'Space') {
       text.value += ' ';
-   }
+   };
    if (event.target.dataset.keyrus == 'Enter') {
       text.value += '\n';
-   }
+   };
    if (event.target.dataset.keyrus == 'Clear') {
       text.value = ' ';
-   }
+   };
+   if (event.target.dataset.keyrus == 'Backspace') {
+      text.value = text.value.slice(0, -1);
+   };
+
 
 }));
 
