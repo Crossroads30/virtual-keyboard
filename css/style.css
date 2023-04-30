@@ -35,7 +35,7 @@ html {
    font-size: 18px;
    color: #444444;
    overflow: auto;
-   /* caret-color: transparent; */
+   caret-color: transparent;
 }
 
 .textarea:focus {

@@ -338,7 +338,7 @@ window.addEventListener('keyup', function (e) {
    };
 });
 
-
+//local storage
 if (localStorage.getItem('lang') !== 'rus') {
    keyboardRus.classList.add('hidden');
 } else {
@@ -519,11 +519,15 @@ nightMode.addEventListener('click', function () {
    language.classList.toggle('lang-night');
    nightMode.classList.toggle('night-mode-active');
    keyboard.classList.toggle('keyboard-night');
+   keyboardRus.classList.toggle('keyboard-night');
    text.classList.toggle('text-night');
    [...icon].forEach(item => {
       item.classList.toggle('icon-night')
    });
    for (let i = 0; i < keys.length; i++) {
-      keys[i].classList.toggle('keys-night')
+      keys[i].classList.toggle('keys-night');
+   }
+   for (let i = 0; i < keysRu.length; i++) {
+      keysRu[i].classList.toggle('keys-night');
    }
 });
