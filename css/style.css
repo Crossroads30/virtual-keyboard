@@ -1,0 +1,245 @@
+html {
+   line-height: 1.15;
+   -webkit-text-size-adjust: 100%;
+}
+
+* {
+   box-sizing: border-box;
+}
+
+.body {
+   display: block;
+   margin: 0;
+}
+
+.conteiner {
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto;
+   font-family: "Trebuchet MS", "Helvetica", sans-serif;
+}
+
+.title {
+   display: block;
+   font-size: 30px;
+   /* color: rgba(107, 246, 7, 0.909); */
+   color: silver;
+}
+
+.textarea {
+   display: block;
+   width: 700px;
+   height: 200px;
+   margin: 30px auto 0px;
+   padding: 10px;
+   font-size: 18px;
+   color: #444444;
+   overflow: auto;
+   caret-color: transparent;
+}
+
+.textarea:focus {
+   outline: none;
+}
+
+.keyboard,
+.keyboard-rus {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   width: 700px;
+   margin: 30px auto 10px;
+   padding: 10px 0;
+   background: silver;
+   border: 3px solid #222222;
+   border-radius: 5px;
+}
+
+.keyboard-key,
+.keyboard-key-ru {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-shrink: 0;
+   min-width: 40px;
+   height: 40px;
+   margin: 2px;
+   border: 1px solid black;
+   color: #222222;
+   background: #fff;
+   transition: all .2s;
+}
+
+.keyboard-key:hover {
+   background: #f1de7d;
+}
+
+.keyboard-key-ru:hover {
+   background: #f1de7d;
+}
+
+.keyboard-key:active {
+   background: rgba(107, 246, 7, 0.909);
+   border-radius: 50px;
+}
+
+.keyboard-key-ru:active {
+   background: rgba(107, 246, 7, 0.909);
+   border-radius: 50px;
+}
+
+.description,
+.language,
+.title {
+   margin: 10px auto;
+   text-align: center;
+}
+
+.keyboard-key[data-key='Backspace'],
+.keyboard-key-ru[data-keyrus='Backspace'] {
+   width: 100px;
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Tab'],
+.keyboard-key-ru[data-keyrus='Tab'] {
+   width: 56px;
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Enter'],
+.keyboard-key-ru[data-keyrus='Enter'] {
+   width: 100px;
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Caps Lock'],
+.keyboard-key-ru[data-keyrus='Caps Lock'] {
+   width: 84px;
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Shift'],
+.keyboard-key-ru[data-keyrus='Shift'] {
+   width: 144px;
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Space'],
+.keyboard-key-ru[data-keyrus='Space'] {
+   width: 408px;
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Del'],
+.keyboard-key-ru[data-keyrus='Del'] {
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Contr'],
+.keyboard-key-ru[data-keyrus='Contr'] {
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Opt'],
+.keyboard-key-ru[data-keyrus='Opt'] {
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Cmd'],
+.keyboard-key-ru[data-keyrus='Cmd'] {
+   font-size: 12px;
+}
+
+.keyboard-key[data-key='Clear'],
+.keyboard-key-ru[data-keyrus='Clear'] {
+   font-size: 12px;
+}
+
+.active {
+   background: rgba(107, 246, 7, 0.909);
+   border-radius: 50px;
+}
+
+.hidden {
+   display: none;
+}
+
+.night-mode {
+   position: relative;
+   width: 60px;
+   height: 20px;
+   background-color: silver;
+   border-radius: 50px;
+   display: flex;
+   align-self: center;
+   align-items: center;
+   cursor: pointer;
+   transition: .2s;
+}
+
+.body-active {
+   background-color: rgb(54,54,54);
+}
+
+.night-mode-active {
+   background-color: #222222;
+}
+
+.toggle-circle {
+   width: 14px;
+   height: 14px;
+   background-color: rgb(54, 54, 54);
+   border-radius: 50px;
+   margin: 0 5px;
+   position: absolute;
+   left: 0;
+   transition: .2s;
+}
+
+.circle-active {
+   left: 60%;
+   background-color: #fff;
+}
+
+.keyboard-night {
+   background-color: #585858;
+}
+
+.keys-night {
+   background-color: #3c3c3c;
+   color: #fff;
+}
+
+.text-night {
+   background-color: #2b2b2b;
+   color: #fff;
+}
+
+
+.icon-night {
+   filter: invert(100%);
+}
+
+
+.descr-night,
+.lang-night,
+.title-night {
+   color: #fff;
+}
+
+.keys-night-remove {
+   animation: keys_night_animation 0.5s forwards;
+}
+
+@keyframes keys_night_animation {
+   0% {
+      background-color: #fff;
+      color: #000;
+   }
+
+   100% {
+      background-color: #333;
+      color: #fff;
+   }
+}
